@@ -38,4 +38,11 @@ class SimpleQuotations extends Module
             && $this->registerHook('displayCustomerAccount')
         );
     }
+
+    public function uninstall()
+    {
+        return (
+            parent::uninstall()
+        );
+    }
 }
