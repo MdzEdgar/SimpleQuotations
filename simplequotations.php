@@ -1,14 +1,16 @@
 <?php
+use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
+
 if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-class SimpleQuotations extends Module
+class SimpleQuotations extends PaymentModule
 {
     public function __construct()
     {
         $this->name = 'simplequotations';
-        $this->tab = 'others';
+        $this->tab = 'payments_gateways';
         $this->version = '1.0.0';
         $this->author = 'Edgar Mdz';
         $this->need_instance = 0;
@@ -34,10 +36,9 @@ class SimpleQuotations extends Module
         return (
             parent::install()
             && $this->registerHook('displayExpressCheckout')
-            && $this->registerHook('displayAfterCarrier')
-            && $this->registerHook('displayCartExtraProductActions')
-            && $this->registerHook('displayShoppingCart')
             && $this->registerHook('displayCustomerAccount')
+            && $this->registerHook('paymentOptions')
+            && $this->registerHook('paymentReturn')
         );
     }
 
@@ -46,5 +47,36 @@ class SimpleQuotations extends Module
         return (
             parent::uninstall()
         );
+    }
+
+    public function hookDisplayExpressCheckout($params)
+    {
+        return $this->display(__FILE__, 'simplequotations.tpl');
+    }
+
+    public function hookDisplayCustomerAccount($params)
+    {
+        return $this->display(__FILE__, 'simplequotations.tpl');
+    }
+
+    public function hookPaymentOptions($params)
+    {
+        if (!$this->active) {
+            return;
+        }
+        if (!$this->checkCurrency($params['cart'])) {
+            return;
+        }
+        $newOption = new PaymentOption;
+        $newOption->setModuleName($this->name)
+            ->setCallToActionText($this->l('Request for a quote'))
+            ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true));
+
+        return [$newOption];
+    }
+
+    public function hookPaymentReturn($params)
+    {
+        return $this->fetch('module:simplequotations/views/templates/hook/payment_return.tpl');
     }
 }
