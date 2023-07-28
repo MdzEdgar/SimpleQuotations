@@ -9,7 +9,7 @@ class SimpleQuotations extends Module
     {
         $this->name = 'simplequotations';
         $this->tab = 'others';
-        $this->Version = '1.0.0';
+        $this->version = '1.0.0';
         $this->author = 'Edgar Mdz';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = [
