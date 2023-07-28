@@ -70,7 +70,8 @@ class SimpleQuotations extends PaymentModule
         $newOption = new PaymentOption;
         $newOption->setModuleName($this->name)
             ->setCallToActionText($this->l('Request for a quote'))
-            ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true));
+            ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true))
+            ->setAdditionalInformation($this->fetch('module:simplequotations/views/templates/front/payment_infos.tpl'));
 
         return [$newOption];
     }
