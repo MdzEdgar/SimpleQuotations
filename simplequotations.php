@@ -24,6 +24,18 @@ class SimpleQuotations extends Module
         $this->description = $this->l('Create quotes from shopping carts.');
 
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
-        
+
+    }
+
+    public function install()
+    {
+        return (
+            parent::install()
+            && $this->registerHook('displayExpressCheckout')
+            && $this->registerHook('displayAfterCarrier')
+            && $this->registerHook('displayCartExtraProductActions')
+            && $this->registerHook('displayShoppingCart')
+            && $this->registerHook('displayCustomerAccount')
+        );
     }
 }
