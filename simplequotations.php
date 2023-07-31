@@ -64,9 +64,7 @@ class SimpleQuotations extends PaymentModule
         if (!$this->active) {
             return;
         }
-        if (!$this->checkCurrency($params['cart'])) {
-            return;
-        }
+
         $newOption = new PaymentOption;
         $newOption->setModuleName($this->name)
             ->setCallToActionText($this->l('Request for a quote'))
