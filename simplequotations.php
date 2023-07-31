@@ -44,6 +44,7 @@ class SimpleQuotations extends PaymentModule
 
     public function uninstall()
     {
+        include(dirname(__FILE__).'/sql/uninstall.php');
         return (
             parent::uninstall()
         );
