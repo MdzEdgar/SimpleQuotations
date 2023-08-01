@@ -13,7 +13,7 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' ._DB_PREFIX_ . 'simplequotations_cart` (
 	`id_currency` int(10) unsigned NOT NULL,
 	`id_customer` int(10) unsigned NOT NULL,
 	`id_guest` int(10) unsigned NOT NULL,
-	`secure_key` varchar(32) NOT NULL DEFAULT,
+	`secure_key` varchar(32) NOT NULL,
 	`recyclable` tinyint(3) unsigned NOT NULL DEFAULT 1,
 	`allow_seperated_package` tinyint(3) unsigned NOT NULL DEFAULT 0,
 	`date_add` datetime NOT NULL,
