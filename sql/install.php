@@ -2,7 +2,7 @@
 $sql = array();
 
 $sql[] = 'CREATE TABLE IF NOT EXISTS `' ._DB_PREFIX_ . 'simplequotations_cart` (
-	`id_simplequotations_cart` int(11) unsigned NOT NULL AUTO_INCREMENT,
+	`id_quote_cart` int(11) unsigned NOT NULL AUTO_INCREMENT,
 	`id_shop_group` int(11) unsigned NOT NULL DEFAULT 1,
 	`id_shop` int(11) unsigned NOT NULL DEFAULT 1,
 	`id_carrier` int(10) unsigned NOT NULL,
@@ -18,11 +18,11 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' ._DB_PREFIX_ . 'simplequotations_cart` (
 	`allow_seperated_package` tinyint(3) unsigned NOT NULL DEFAULT 0,
 	`date_add` datetime NOT NULL,
 	`date_upd` datetime NOT NULL,
-	PRIMARY KEY (`id_simplequotations_cart`)
+	PRIMARY KEY (`id_quote_cart`)
 ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8mb4;';
 
 $sql[] = 'CREATE TABLE IF NOT EXISTS `'. _DB_PREFIX_ .'simplequotations_cart_product` (
-    `id_simplequotations_cart` int(10) unsigned NOT NULL,
+    `id_quote_cart` int(10) unsigned NOT NULL,
     `id_product` int(10) unsigned NOT NULL,
     `id_address_delivery` int(10) unsigned NOT NULL DEFAULT 0,
     `id_shop` int(10) unsigned NOT NULL DEFAULT 1,
@@ -30,7 +30,7 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `'. _DB_PREFIX_ .'simplequotations_cart_pro
     `id_customization` int(10) unsigned NOT NULL DEFAULT 0,
     `quantity` int(10) unsigned NOT NULL DEFAULT 0,
     `date_add` datetime NOT NULL,
-    PRIMARY KEY (`id_simplequotations_cart`,`id_product`,`id_product_attribute`,`id_customization`,`id_address_delivery`)
+    PRIMARY KEY (`id_quote_cart`,`id_product`,`id_product_attribute`,`id_customization`,`id_address_delivery`)
 ) ENGINE='. _MYSQL_ENGINE_ .' DEFAULT CHARSET=utf8mb4;';
 
 $sql[] = 'CREATE TABLE IF NOT EXISTS `'. _DB_PREFIX_ .'simplequotations_quotes` (
